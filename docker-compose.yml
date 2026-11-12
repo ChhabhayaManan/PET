@@ -13,6 +13,9 @@ x-backend: &backend
   volumes:
     - pet_data:/app/data
     - hf_cache:/hf-cache
+  # Lets local models (Ollama, LM Studio) on this computer be reached on Linux too.
+  extra_hosts:
+    - host.docker.internal:host-gateway
   networks: [default, sandbox]
 
 services:
