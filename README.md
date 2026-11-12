@@ -23,6 +23,23 @@ yours.
 
 ---
 
+## Quick start
+
+Needs [Docker](https://docs.docker.com/get-docker/) and Git.
+
+```bash
+git clone https://github.com/ChhabhayaManan/PET.git && cd PET && docker compose up -d --build
+```
+
+Open http://localhost:5173 and pick a model: paste your own API key (OpenAI, Anthropic,
+Gemini, Groq, OpenRouter or NVIDIA NIM), or run `ollama pull qwen2.5-coder:7b` and choose
+**Ollama** for a free model that stays on your computer.
+
+The first build takes a few minutes. Stop PET with `docker compose down`; your progress is
+kept.
+
+---
+
 ## Demo
 
 [![PET demo](docs/figures/pet_home.png)](https://youtu.be/VIDEO_ID)
@@ -173,9 +190,10 @@ moderation check keeps the conversation on learning.
 <details>
 <summary><b>Onboarding</b></summary>
 
-New students go through a short setup: a few questions about themselves, their language, and
-a diagnostic of multiple-choice, predict-the-output and short theory questions. The results set
-the starting topic levels.
+New students go through a short setup: a few questions about themselves and their
+language, then an adaptive check of up to 12 items (predict the output, fill the blank, find
+the bug, write a short program, and a few theory questions). The results set the starting
+level on all 12 topics, and practice begins from the weakest open topic.
 
 </details>
 
@@ -183,8 +201,9 @@ the starting topic levels.
 
 ## Choose your model
 
-Pick a model from the **Model** card in the sidebar. A new student is asked to choose one
-during setup.
+PET asks for a model the first time it opens. You can change it later from the **Model**
+card in the sidebar. Bring your own key from a cloud provider, or run a free model on your
+own computer.
 
 **Cloud**
 
@@ -208,27 +227,9 @@ during setup.
 - **Clear errors.** If a key stops working (rejected, rate limit, out of credit), PET says
   exactly why.
 
----
-
-## Run it on your computer
-
-Needs [Docker](https://docs.docker.com/get-docker/). Then:
-
-```bash
-git clone https://github.com/ChhabhayaManan/AiTa.git pet
-cd pet
-docker compose up -d --build
-```
-
-Open http://localhost:5173. There are no accounts and no login: PET opens straight away and
-asks you to choose an AI model during setup.
-
-The first start takes a few minutes to build. The tutor chat starts citing textbooks a few
-minutes after that, once they are downloaded. To stop PET, run `docker compose down`; your
-progress is kept.
-
-Settings are optional. To change one, for example to set a default model,
-copy `.env.example` to `backend/.env`, edit it, and run `docker compose up -d` again.
+Optional: to give every student the same model from the start, copy `.env.example` to
+`backend/.env`, fill in `DEFAULT_LLM_PROVIDER`, `DEFAULT_LLM_MODEL` and
+`DEFAULT_LLM_API_KEY`, and run `docker compose up -d` again.
 
 ---
 
@@ -249,7 +250,7 @@ copy `.env.example` to `backend/.env`, edit it, and run `docker compose up -d` a
 
 ```
 backend/
-  app/core/        config, database, auth, LLM gateway and model choice
+  app/core/        config, database, LLM gateway and model choice
   app/features/    one folder per feature: accounts, onboarding, practice, problems,
                    grading, hints, learner_model, feedback, chat, gamification,
                    model_settings
