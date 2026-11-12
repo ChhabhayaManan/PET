@@ -10,7 +10,7 @@ This `docs/` folder is the PET website, served by GitHub Pages.
 ## Turn it on
 GitHub repository → Settings → Pages → Source: "Deploy from a branch",
 Branch: `main`, Folder: `/docs`. The site appears at
-https://chhabhayamanan.github.io/AiTa/ (or the new address if the repository is renamed).
+https://chhabhayamanan.github.io/PET/.
 
 ## Update a screenshot
 Replace the PNG in `assets/img/` with a file of the same name. The page picks it up automatically.

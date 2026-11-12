@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#F4F6F8">
 <title>PET · Programming Education Tool</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="PET is an AI teaching assistant for beginners in C, C++ and Python. It grades code with real tests and gives hints that stop before the answer.">
+<meta name="description" content="PET is an AI teaching assistant that picks what you practise next, checks your code against real tests, and helps you find the fix yourself.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -621,7 +621,7 @@ main,.foot{position:relative;z-index:1}
     </ul>
     <button class="iconbtn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch to dark theme"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    <a class="gh" href="https://github.com/ChhabhayaManan/AiTa" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub</span></a>
+    <a class="gh" href="https://github.com/ChhabhayaManan/PET" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub</span></a>
   </div>
 </header>
 
@@ -632,16 +632,16 @@ main,.foot{position:relative;z-index:1}
     <h1 class="word" aria-label="PET"><span class="wm "><svg class="wm-chev" viewBox="0 0 4.6 7" aria-hidden="true"><polygon points="0,0 1.5,0 4.6,3.5 1.5,7 0,7 3.1,3.5"/></svg><span>PET</span><svg class="wm-end" viewBox="0 0 4 10" aria-hidden="true"><path class="pl" d="M2,0h1v1h1v1h-1v1h-1v-1h-1v-1h1z"/><rect class="cu" x="0" y="8" width="4" height="2"/></svg></span></h1>
     <p class="full"><b>P</b>rogramming <b>E</b>ducation <b>T</b>ool</p>
     <div class="hero-row">
-      <p class="lede">An AI teaching assistant for beginners in C, C++ and Python. It runs your code against real tests, follows how well you know each topic, and gives hints that stop just before the answer.</p>
+      <p class="lede">An AI teaching assistant that picks what you practise next, checks your code against real tests, and helps you find the fix yourself.</p>
       <div class="hero-act">
-        <div class="cmdblock"><pre id="heroCmd"><span class="p">$ </span>git clone https://github.com/ChhabhayaManan/AiTa.git pet
-<span class="p">$ </span>cd pet
+        <div class="cmdblock"><pre id="heroCmd"><span class="p">$ </span>git clone https://github.com/ChhabhayaManan/PET.git
+<span class="p">$ </span>cd PET
 <span class="p">$ </span>docker compose up -d --build</pre><button class="copy" type="button" data-copy="heroCmd">Copy</button></div>
         <div class="btns"><a class="btn" href="#setup">Set up PET</a><a class="btn ghost" href="#framework">See how it works</a></div>
       </div>
     </div>
     <div class="panel heromap">
-      <div class="phead"><h3>A student's twelve topics, live</h3><p>Each topic opens when the topics before it reach 40%. A simulated student practises with PET's real update rule.</p></div>
+      <div class="phead"><h3>How topics unlock</h3><p>Each topic unlocks once its prerequisite topics reach 40%. A simulated student practises here, using PET's real update rule.</p></div>
       <div class="mapwrap"><svg class="mapsvg" id="map1" viewBox="0 0 980 300" role="img" aria-label="Topic prerequisite map with live mastery"></svg></div>
       <div class="pfoot"><span class="ticker" id="tick1">Starting levels come from the onboarding diagnostic.</span>
         <span class="legend"><span><i style="background:var(--surface);border-style:dashed"></i>locked</span><span><i style="background:color-mix(in srgb,var(--fail) 30%,var(--surface))"></i>weak</span><span><i style="background:color-mix(in srgb,var(--ink) 22%,var(--surface))"></i>developing</span><span><i style="background:color-mix(in srgb,var(--pass) 55%,var(--surface))"></i>mastered</span></span>
@@ -670,7 +670,7 @@ main,.foot{position:relative;z-index:1}
       <div><b>12</b><span>topics with a prerequisite graph</span></div>
       <div><b>3</b><span>languages, a separate level for each</span></div>
       <div><b>6</b><span>agents working on one learner model</span></div>
-      <div><b>4</b><span>hint levels, each checked by a guardrail</span></div>
+      <div><b>4</b><span>hint levels; every LLM-written hint passes a guardrail</span></div>
     </div>
   </div>
 </section>
@@ -899,8 +899,8 @@ main,.foot{position:relative;z-index:1}
           <p data-os-text="linux" hidden>Install <a href="https://docs.docker.com/engine/install/" target="_blank" rel="noopener">Docker Engine</a> with the Compose plugin, and Git from your package manager. Check both with <code>docker compose version</code> and <code>git --version</code>.</p></div>
         <figure class="shot" data-src="assets/img/docker-running.png"><b>Screenshot · Docker Desktop, Engine running</b><span>assets/img/docker-running.png</span></figure></li>
       <li><div class="stp"><h3>Download PET and start it</h3>
-          <div class="cmdblock"><pre id="cmdStart"><span class="p">$ </span>git clone https://github.com/ChhabhayaManan/AiTa.git pet
-<span class="p">$ </span>cd pet
+          <div class="cmdblock"><pre id="cmdStart"><span class="p">$ </span>git clone https://github.com/ChhabhayaManan/PET.git
+<span class="p">$ </span>cd PET
 <span class="p">$ </span>docker compose up -d --build</pre><button class="copy" type="button" data-copy="cmdStart">Copy</button></div>
           <p>Run these in <span data-os-text="win">PowerShell or Git Bash</span><span data-os-text="mac" hidden>Terminal</span><span data-os-text="linux" hidden>a terminal</span>. The first build takes a few minutes. The database, the code sandbox, the backend and the website all start together. The tutor chat starts citing textbooks a few minutes later, once they download.</p></div>
         <figure class="shot" data-src="assets/img/compose-up.png"><b>Screenshot · containers started</b><span>assets/img/compose-up.png</span></figure></li>
@@ -968,7 +968,6 @@ frontend/src/
       <details><summary>Is PET free?</summary><div>PET is free and runs on your computer. A cloud model may charge you through your own provider account; a local Ollama model costs nothing.</div></details>
       <details><summary>Does my code leave my computer?</summary><div>Your code always runs in PET's local sandbox. With a cloud model, the prompts that explain your code are sent to that provider. With a local model, nothing leaves your computer.</div></details>
       <details><summary>Which model should I use?</summary><div>Any model that passes the four connection checks. For a local model, our guide uses <code>qwen2.5-coder:7b</code>.</div></details>
-      <details><summary>Can a teacher run it for a class?</summary><div>Set <code>DEPLOY_MODE=web</code> in <code>backend/.env</code> for accounts with email login codes. That mode allows cloud models only.</div></details>
     </div>
   </div>
 </section>
@@ -991,7 +990,7 @@ frontend/src/
   <div class="wrap">
     <div><span class="wm "><svg class="wm-chev" viewBox="0 0 4.6 7" aria-hidden="true"><polygon points="0,0 1.5,0 4.6,3.5 1.5,7 0,7 3.1,3.5"/></svg><span>PET</span><svg class="wm-end" viewBox="0 0 4 10" aria-hidden="true"><path class="pl" d="M2,0h1v1h1v1h-1v1h-1v-1h-1v-1h1z"/><rect class="cu" x="0" y="8" width="4" height="2"/></svg></span><p>Programming Education Tool. A B.Tech mini project at Dhirubhai Ambani University, guided by Prof. Saurabh Tiwari.</p></div>
     <ul><li><a href="#what">What it is</a></li><li><a href="#framework">Agents</a></li><li><a href="#setup">Setup</a></li><li><a href="#more">More</a></li></ul>
-    <ul><li><a href="https://github.com/ChhabhayaManan/AiTa" target="_blank" rel="noopener">GitHub repository</a></li><li><a href="#top">Back to top</a></li></ul>
+    <ul><li><a href="https://github.com/ChhabhayaManan/PET" target="_blank" rel="noopener">GitHub repository</a></li><li><a href="#top">Back to top</a></li></ul>
   </div>
 </footer>
 
@@ -1038,6 +1037,9 @@ const TOP=[
  ["hashing_sets",880,25,["arrays"]],["sorting",880,80,["arrays"]],["searching",880,135,["arrays"]],["stacks_queues",880,190,["arrays"]],["dynamic_programming",880,265,["recursion","arrays"]]
 ];
 const IDS=TOP.map(t=>t[0]);
+const NAME={basics_io:"Basics & I/O",conditionals:"Conditionals",functions:"Functions",loops:"Loops",recursion:"Recursion",arrays:"Arrays",strings:"Strings",hashing_sets:"Hashing & Sets",sorting:"Sorting",searching:"Searching",stacks_queues:"Stacks & Queues",dynamic_programming:"Dynamic Programming"};
+const nm=id=>NAME[id]||id;
+
 const pos=Object.fromEntries(TOP.map(t=>[t[0],t]));
 const START={basics_io:.70,conditionals:.50,functions:.50,loops:.25,recursion:.3,arrays:.3,strings:.3,hashing_sets:.3,sorting:.3,searching:.3,stacks_queues:.3,dynamic_programming:.3};
 const band=v=>v>=.75?"mast":v<.4?"weak":"dev";
@@ -1050,14 +1052,14 @@ function Sim(){
     this.M[t]=old+.3*kind[1]*(score-old);this.last[t]=this.tick;return{t,old,nw:this.M[t],kind,score}};
   this.reset();
 }
-const tickText=r=>r?`<b>${r.t}</b>: weakest open topic → ${r.kind[0]}, score ${r.score.toFixed(2)}. ${r.old.toFixed(2)} + 0.3 × ${r.kind[1]} × (${r.score.toFixed(2)} − ${r.old.toFixed(2)}) = <b>${r.nw.toFixed(2)}</b>`:"<b>Done.</b> Every open topic is mastered or developing.";
+const tickText=r=>r?`<b>${nm(r.t)}</b>: weakest open topic → ${r.kind[0]}, score ${r.score.toFixed(2)}. ${r.old.toFixed(2)} + 0.3 × ${r.kind[1]} × (${r.score.toFixed(2)} − ${r.old.toFixed(2)}) = <b>${r.nw.toFixed(2)}</b>`:"<b>Done.</b> Every open topic is mastered or developing.";
 
 /* map view */
 const WD=id=>pos[id][1]>800?190:170,H=36;
 function buildMap(svg){
   let s=`<defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="var(--surface)"/><line x1="0" y1="0" x2="0" y2="8" stroke="var(--grid)" stroke-width="3"/></pattern></defs>`;
   TOP.forEach(([id,x,y,pre])=>pre.forEach(p=>{const a=pos[p];const x1=a[1]+WD(p)/2-4,y1=a[2],x2=x-WD(id)/2+4,y2=y,mx=(x1+x2)/2;s+=`<path class="edge" data-to="${id}" d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}"/>`}));
-  TOP.forEach(([id,x,y])=>{const W=WD(id);s+=`<g class="nd" data-id="${id}"><rect class="box" x="${x-W/2}" y="${y-H/2}" width="${W}" height="${H}"/><rect class="fill" x="${x-W/2+2}" y="${y-H/2+2}" width="0" height="${H-4}"/><text x="${x-W/2+8}" y="${y+4}">${id}</text><text class="v" x="${x+W/2-8}" y="${y+4}" text-anchor="end"></text></g>`});
+  TOP.forEach(([id,x,y])=>{const W=WD(id);s+=`<g class="nd" data-id="${id}"><rect class="box" x="${x-W/2}" y="${y-H/2}" width="${W}" height="${H}"/><rect class="fill" x="${x-W/2+2}" y="${y-H/2+2}" width="0" height="${H-4}"/><text x="${x-W/2+8}" y="${y+4}">${nm(id)}</text><text class="v" x="${x+W/2-8}" y="${y+4}" text-anchor="end"></text></g>`});
   svg.innerHTML=s;
 }
 function paintMap(svg,sim,pick){
@@ -1281,7 +1283,7 @@ renderOB(OB.length-1);
 /* ---------- assessment ---------- */
 const AM={basics_io:.82,conditionals:.71,functions:.55,loops:.42,recursion:.30,arrays:.36,strings:.30,hashing_sets:.30,sorting:.30,searching:.30,stacks_queues:.30,dynamic_programming:.30};
 const LASTP={basics_io:9,conditionals:8,functions:5,loops:7,arrays:6,recursion:2,strings:1};
-$("sliders").innerHTML=IDS.map(id=>`<div class="srow" id="row-${id}"><label class="nm" for="s-${id}">${id}</label><input type="range" id="s-${id}" min="0" max="100" value="${Math.round(AM[id]*100)}"><span id="o-${id}">${Math.round(AM[id]*100)}%</span></div>`).join("");
+$("sliders").innerHTML=IDS.map(id=>`<div class="srow" id="row-${id}"><label class="nm" for="s-${id}">${nm(id)}</label><input type="range" id="s-${id}" min="0" max="100" value="${Math.round(AM[id]*100)}"><span id="o-${id}">${Math.round(AM[id]*100)}%</span></div>`).join("");
 function runAssess(){
   IDS.forEach(id=>{AM[id]=+$("s-"+id).value/100;$("o-"+id).textContent=Math.round(AM[id]*100)+"%"});
   const isOpen=id=>pos[id][3].every(p=>AM[p]>=.4);
@@ -1293,11 +1295,11 @@ function runAssess(){
   const [type,diff]=m<.4?["multiple-choice question","easy"]:m<.75?[(Math.round(m*100)%2?"debugging challenge":"coding problem"),"medium"]:["coding problem","hard"];
   const q=(id,t)=>{document.querySelector(`#${id} span`).innerHTML=t};
   q("a1","12 topic levels read for Python. Topics with no evidence start at 0.30.");
-  q("a2",`${openT.length} open, ${locked.length} locked. A topic opens when all its prerequisites are at 0.40 or more.${locked.length?"<br>Locked: "+locked.slice(0,4).join(", ")+(locked.length>4?", …":""):""}`);
-  q("a3",`Weakest open first, ties to least recently practised: ${rank.slice(0,3).map(x=>`${x} ${Math.round(AM[x]*100)}%`).join(" → ")}${moved?`<br><span style="color:var(--accent)">Anti-stuck: ${moved} moved to the end for one item.</span>`:""}`);
+  q("a2",`${openT.length} open, ${locked.length} locked. A topic opens when all its prerequisites are at 0.40 or more.${locked.length?"<br>Locked: "+locked.slice(0,4).map(nm).join(", ")+(locked.length>4?", …":""):""}`);
+  q("a3",`Weakest open first, ties to least recently practised: ${rank.slice(0,3).map(x=>`${nm(x)} ${Math.round(AM[x]*100)}%`).join(" → ")}${moved?`<br><span style="color:var(--accent)">Anti-stuck: ${nm(moved)} moved to the end for one item.</span>`:""}`);
   q("a4",`Level ${Math.round(m*100)}% → ${m<.4?"below 0.40":m<.75?"0.40 to 0.75":"0.75 and above"} → ${type}, ${diff}.`);
   ["a1","a2","a3","a4"].forEach(x=>$(x).classList.remove("hot"));$(moved?"a3":"a4").classList.add("hot");
-  $("areason").textContent=moved?`You missed ${moved} three times in a row, so here is one item from ${pick} first: a ${diff} ${type}.`:`${pick} is your weakest open topic (topic level ${Math.round(m*100)}%), so here is a ${diff} ${type}.`;
+  $("areason").textContent=moved?`You missed ${nm(moved)} three times in a row, so here is one item from ${nm(pick)} first: a ${diff} ${type}.`:`${nm(pick)} is your weakest open topic (topic level ${Math.round(m*100)}%), so here is a ${diff} ${type}.`;
 }
 $("sliders").addEventListener("input",runAssess);$("stuck").addEventListener("change",runAssess);runAssess();
 
