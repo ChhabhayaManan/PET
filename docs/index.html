@@ -198,7 +198,7 @@ main>*{min-width:0}
 
 /* trust */
 .trust{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-.risk{all:unset;box-sizing:border-box;cursor:pointer;border:2px solid var(--ink);background:var(--surface);padding:14px;min-height:170px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-width:0}
+.risk{all:unset;box-sizing:border-box;cursor:pointer;border:2px solid var(--ink);background:var(--surface);padding:14px;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-width:0}
 .risk:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .risk .q{font-weight:700;font-size:16px;line-height:1.3}
 .risk .a{display:none;font-size:14px;line-height:1.45}
@@ -226,7 +226,8 @@ main>*{min-width:0}
 .stp code{font:500 13.5px var(--f-mono);background:var(--bg);padding:1px 5px;border:1.5px solid var(--grid)}
 .steps .shot{border:0;border-left:2px dashed var(--accent);min-height:180px}
 .steps .shot.has-img{border:0;border-left:2px solid var(--ink);box-shadow:none;padding:12px;background:var(--bg)}
-.steps .shot.has-img img{border:2px solid var(--ink)}
+.steps .shot.has-img{display:flex;align-items:center;justify-content:center}
+.steps .shot.has-img img{border:2px solid var(--ink);width:auto;max-width:100%;max-height:320px;height:auto}
 .checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .checks div{border:2px solid var(--grid);padding:8px 10px;font:600 12.5px/1.3 var(--f-mono);transition:border-color .25s}
 .checks div em{display:block;font-style:normal;font-weight:400;color:var(--muted)}
@@ -731,7 +732,7 @@ main,.foot{position:relative;z-index:1}
 <!-- FRAMEWORK -->
 <section class="sec" id="framework">
   <div class="wrap">
-    <header class="sec-head"><h2 class="disp">The multi-agent framework</h2><p>Click any part to see who it talks to, what it reads and what it writes. Red dashed boxes use an LLM; a green dot means the output passes a guardrail.</p></header>
+    <header class="sec-head"><h2 class="disp">The multi‑agent framework</h2><p>Click any part to see who it talks to, what it reads and what it writes. Red dashed boxes use an LLM; a green dot means the output passes a guardrail.</p></header>
     <div class="panel">
       <div class="fwlegend"><span><i style="border-color:var(--accent);border-style:dashed"></i>LLM-based agent</span><span><i></i>rule-based</span><span><i style="border-color:var(--pass);background:color-mix(in srgb,var(--pass) 12%,var(--surface))"></i>tool</span><span><i style="background:var(--bg)"></i>data store</span><span><i style="background:var(--pass);border-color:var(--pass);border-radius:50%;width:12px"></i>guardrail-checked</span></div>
       <div class="fwwrap"><svg id="fw" viewBox="0 0 1200 640" role="group" aria-label="PET framework, interactive"></svg></div>
@@ -891,22 +892,20 @@ main,.foot{position:relative;z-index:1}
   <div class="wrap">
     <header class="sec-head"><h2 class="disp">Set up PET on your computer</h2><p>Six steps. Most of the waiting is the first build.</p></header>
     <div class="notice"><b>PET runs only on your computer.</b> There is no hosted version. You bring the model: your own API key from a provider, or a free local model with Ollama.</div>
-    <div class="tabrow" role="tablist" id="osTabs"><button type="button" role="tab" data-os="win" aria-selected="true">Windows</button><button type="button" role="tab" data-os="mac" aria-selected="false">macOS</button><button type="button" role="tab" data-os="linux" aria-selected="false">Linux</button></div>
-    <ol class="steps">
+        <ol class="steps">
       <li><div class="stp"><h3>Install Docker and Git, then start Docker</h3>
-          <p data-os-text="win">Install <a href="https://docs.docker.com/desktop/setup/install/windows-install/" target="_blank" rel="noopener">Docker Desktop for Windows</a> and <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git for Windows</a>. Open Docker Desktop and wait until it shows Engine running.</p>
-          <p data-os-text="mac" hidden>Install <a href="https://docs.docker.com/desktop/setup/install/mac-install/" target="_blank" rel="noopener">Docker Desktop for Mac</a>. Git comes with the Xcode command line tools: run <code>git --version</code> once and accept the install. Open Docker Desktop and wait until it shows Engine running.</p>
-          <p data-os-text="linux" hidden>Install <a href="https://docs.docker.com/engine/install/" target="_blank" rel="noopener">Docker Engine</a> with the Compose plugin, and Git from your package manager. Check both with <code>docker compose version</code> and <code>git --version</code>.</p></div>
-        <figure class="shot" data-src="assets/img/docker-running.png"><b>Screenshot · Docker Desktop, Engine running</b><span>assets/img/docker-running.png</span></figure></li>
+          <p><b>Windows or macOS:</b> install <a href="https://docs.docker.com/desktop/" target="_blank" rel="noopener">Docker Desktop</a> and leave it running in the background. <b>Linux:</b> install <a href="https://docs.docker.com/engine/install/" target="_blank" rel="noopener">Docker Engine</a> with the Compose plugin.</p>
+          <p>You also need <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a>. On macOS, running <code>git --version</code> once offers to install it.</p></div>
+        <figure class="shot" data-src="assets/img/docker-running.png"><b>Screenshot · Docker Desktop with PET running</b><span>assets/img/docker-running.png</span></figure></li>
       <li><div class="stp"><h3>Download PET and start it</h3>
           <div class="cmdblock"><pre id="cmdStart"><span class="p">$ </span>git clone https://github.com/ChhabhayaManan/PET.git
 <span class="p">$ </span>cd PET
 <span class="p">$ </span>docker compose up -d --build</pre><button class="copy" type="button" data-copy="cmdStart">Copy</button></div>
-          <p>Run these in <span data-os-text="win">PowerShell or Git Bash</span><span data-os-text="mac" hidden>Terminal</span><span data-os-text="linux" hidden>a terminal</span>. The first build takes a few minutes. The database, the code sandbox, the backend and the website all start together. The tutor chat starts citing textbooks a few minutes later, once they download.</p></div>
+          <p>Run these in a terminal: PowerShell or Git Bash on Windows, Terminal on macOS or Linux. The first build takes a few minutes. The database, the code sandbox, the backend and the website all start together. The tutor chat starts citing textbooks a few minutes later, once they download.</p></div>
         <figure class="shot" data-src="assets/img/compose-up.png"><b>Screenshot · containers started</b><span>assets/img/compose-up.png</span></figure></li>
       <li><div class="stp"><h3>Open PET</h3>
           <div class="cmdblock"><pre id="cmdOpen">http://localhost:5173</pre><button class="copy" type="button" data-copy="cmdOpen">Copy</button></div>
-          <p>There is no login. PET opens straight away and asks you to choose an AI model.</p></div>
+          <p>There is no login. On the first run PET asks you to choose an AI model, then takes you through setup to your dashboard.</p></div>
         <figure class="shot" data-src="assets/img/first-screen.png"><b>Screenshot · the first screen</b><span>assets/img/first-screen.png</span></figure></li>
       <li><div class="stp"><h3>Connect a model</h3>
           <div class="tabrow" role="tablist" id="mTabs"><button type="button" role="tab" data-m="key" aria-selected="true">Your API key</button><button type="button" role="tab" data-m="ollama" aria-selected="false">Ollama, on your computer</button></div>
@@ -915,7 +914,8 @@ main,.foot{position:relative;z-index:1}
             <div class="cmdblock"><pre id="cmdPull"><span class="p">$ </span>ollama pull qwen2.5-coder:7b</pre><button class="copy" type="button" data-copy="cmdPull">Copy</button></div>
             <p>In PET choose <b>Ollama</b> and use this base URL. Use it instead of localhost, because PET runs inside Docker.</p>
             <div class="cmdblock"><pre id="cmdUrl">http://host.docker.internal:11434/v1</pre><button class="copy" type="button" data-copy="cmdUrl">Copy</button></div>
-            <p>Then pick the model from the list. Nothing leaves your computer.</p></div>
+            <p>Then pick the model from the list. Nothing leaves your computer.</p>
+            <p><b>On Linux</b>, start Ollama with <code>OLLAMA_HOST=0.0.0.0 ollama serve</code> so the PET container can reach it.</p></div>
           </div>
         <figure class="shot" id="mShot" data-src="assets/img/model-window.png"><b>Screenshot · the Model window</b><span>assets/img/model-window.png</span></figure></li>
       <li><div class="stp"><h3>Test the connection</h3>
@@ -935,9 +935,9 @@ main,.foot{position:relative;z-index:1}
     </div>
 
     <div class="faq">
-      <details><summary>The docker command is not found, or cannot connect</summary><div>Start Docker Desktop and wait until it says Engine running, then try again in a new terminal.</div></details>
+      <details><summary>The docker command is not found, or cannot connect</summary><div>On Windows or macOS, start Docker Desktop and wait until it is running, then open a new terminal. On Linux, start Docker with <code>sudo systemctl start docker</code>.</div></details>
       <details><summary>Port 5173 or 8000 is already in use</summary><div>Another program is using it. Close that program, then run <code>docker compose up -d</code> again.</div></details>
-      <details><summary>Ollama models are not listed</summary><div>Check that Ollama is running and that the base URL is <code>http://host.docker.internal:11434/v1</code>, not localhost.</div></details>
+      <details><summary>Ollama models are not listed</summary><div>Check that Ollama is running and that the base URL is <code>http://host.docker.internal:11434/v1</code>, not localhost. On Linux, Ollama must listen on all interfaces: start it with <code>OLLAMA_HOST=0.0.0.0 ollama serve</code>.</div></details>
       <details><summary>Test connection fails</summary><div>Read the reason PET shows. A rejected key needs a new key; a rate limit or credit error needs a wait or a top-up; a failed tool-calling check means that model cannot be used with PET, so pick another.</div></details>
       <details><summary>Something broke after an update</summary><div>Run <code>docker compose up -d --build</code>. If it is still broken, <code>docker compose down -v</code> starts fresh but deletes your progress.</div></details>
     </div>
@@ -1218,7 +1218,8 @@ let s=`<defs><marker id="fwarr" viewBox="0 0 10 10" refX="9" refY="5" markerWidt
 GR.forEach(([x1,y1,x2,y2,t])=>{s+=`<rect class="grp" x="${x1}" y="${y1}" width="${x2-x1}" height="${y2-y1}"/><text class="grpt" x="${x1+12}" y="${y1+18}">${t}</text>`});
 FE.forEach(([a,b,l],i)=>{const A=FN[a],B=FN[b],dx=B.x-A.x,dy=B.y-A.y,[x1,y1]=bpt(A,dx,dy),[x2,y2]=bpt(B,-dx,-dy);
   s+=`<path class="fe" id="fe${i}" d="M${x1},${y1} L${x2},${y2}"/>`});
-FE.forEach(([a,b,l],i)=>{const A=FN[a],B=FN[b];s+=`<text class="fel" id="fl${i}" x="${(A.x+B.x)/2}" y="${(A.y+B.y)/2-4}" text-anchor="middle">${l}</text>`});
+const LT={"onb,prof":.18};
+FE.forEach(([a,b,l],i)=>{const A=FN[a],B=FN[b],t=LT[a+","+b]||.5;s+=`<text class="fel" id="fl${i}" x="${A.x+(B.x-A.x)*t}" y="${A.y+(B.y-A.y)*t-4}" text-anchor="middle">${l}</text>`});
 for(const k in FN){const n=FN[k];s+=`<g class="fn ${n.t}" data-k="${k}" tabindex="0" role="button" aria-label="${n.l}"><rect x="${n.x-n.w/2}" y="${n.y-NH/2}" width="${n.w}" height="${NH}"/><text x="${n.x-n.w/2+10}" y="${n.y-2}">${n.l}</text><text class="s" x="${n.x-n.w/2+10}" y="${n.y+12}">${n.s}</text>${n.g?`<circle class="gd" cx="${n.x+n.w/2-2}" cy="${n.y-NH/2+2}" r="7"/>`:""}</g>`}
 fw.innerHTML=s;
 const typeName={llm:["llm","LLM-based"],rule:["","rule-based"],tool:["","tool"],store:["","data store"],ui:["","the user"]};
@@ -1256,8 +1257,8 @@ const OB=[
   gives:{"Evaluation":"style line in its prompt","Hint ladder":"style line in its prompt","Feedback":"style line and tone","Content Player":"replies in Hinglish"},style:"learn"},
  {k:"diagnostic",s:"up to 12 items",in:[["Items","9 code, 3 theory"],["Passed","tiers 1 and 2"],["Theory","marked by 1 LLM call"]],
   gives:{"Profiling":"starting level per topic","Assessment":"which topics are open","Evaluation":"skill: beginner","Feedback":"skill: beginner","Hint ladder":"concept level: low","Content Player":"topic bands"},style:"concept"},
- {k:"done",s:"profile card",in:[["Title","Loop Learner"],["First topic","loops, with the reason"],["Points","none for the diagnostic"]],
-  gives:{"Assessment":"starts practice at loops","Profiling":"profile refreshed"}}
+ {k:"done",s:"profile card",in:[["Title","Loop Learner"],["First topic","Loops, with the reason"],["Points","none for the diagnostic"]],
+  gives:{"Assessment":"starts practice at Loops","Profiling":"profile refreshed"}}
 ];
 const STYLE_PARTS={learn:"Prefers step-by-step explanations, examples first, Hinglish OK.",concept:"Concept understanding: low, so explain ideas from the basics.",goal:"Goal: placements.",hours:"About 2–5 hours a week."};
 let obAt=-1,obTimer=null;
@@ -1606,9 +1607,6 @@ $("trustGrid").addEventListener("click",e=>{const b=e.target.closest(".risk");if
 
 /* ---------- setup tabs ---------- */
 {
-$("osTabs").addEventListener("click",e=>{const b=e.target.closest("[data-os]");if(!b)return;
-  $("osTabs").querySelectorAll("button").forEach(x=>x.setAttribute("aria-selected",x===b));
-  document.querySelectorAll("[data-os-text]").forEach(el=>el.hidden=el.dataset.osText!==b.dataset.os)});
 const SH={key:["model-window.png","the Model window"],ollama:["ollama-selected.png","Ollama selected, base URL filled"],other:["model-window.png","the Model window"]};
 $("mTabs").addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(!b)return;
   $("mTabs").querySelectorAll("button").forEach(x=>x.setAttribute("aria-selected",x===b));
