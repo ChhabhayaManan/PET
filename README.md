@@ -57,6 +57,8 @@ student knows every topic, and picks what to practise next. When a student is st
 hints one step at a time instead of the answer. A tutor chat answers questions from real
 textbooks.
 
+PET is part of **aiTA**, a larger project on AI teaching assistants for programming.
+
 ## Why PET
 
 - **Copying is not learning.** A general chatbot hands a beginner the fixed program. The
