@@ -42,7 +42,7 @@ kept.
 
 ## Demo
 
-[![PET demo](docs/figures/pet_home.png)](https://youtu.be/VIDEO_ID)
+[![PET demo](docs/figures/pet_home.png)](https://youtu.be/pweTpC3bTZc)
 
 Click the image to watch the demo.
 
