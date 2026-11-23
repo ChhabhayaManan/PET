@@ -1,3 +1,6 @@
+import hashlib
+import time
+
 from pydantic import BaseModel
 
 from app.core.config import settings
@@ -19,6 +22,14 @@ _ADD_TOOL = {"type": "function", "function": {
                    "required": ["a", "b"]}}}
 _TOOL_PROMPT = "Use the add tool to add 2 and 3. Do not answer in text."
 _SUM_PROMPT = "What is 2 + 3? Put the number in the answer field."
+# Save right after a passing Test would otherwise repeat every model call.
+PASS_TTL_S = 15 * 60
+_passed: dict[str, float] = {}
+
+
+def _fingerprint(choice: Choice) -> str:
+    raw = "\0".join((choice.provider, choice.base_url, choice.model, choice.api_key))
+    return hashlib.sha256(raw.encode()).hexdigest()
 
 
 class _Sum(BaseModel):
@@ -119,11 +130,16 @@ def check(choice: Choice) -> CheckOut:
                "Could not answer in a fixed JSON shape. Grading, hints and feedback need this."),
         _context_check(listed.get(choice.model)),
     ]
-    return CheckOut(ok=all(c.ok for c in checks), models=models, checks=checks,
-                    context=listed.get(choice.model))
+    ok = all(c.ok for c in checks)
+    if ok:
+        _passed[_fingerprint(choice)] = time.monotonic()
+    return CheckOut(ok=ok, models=models, checks=checks, context=listed.get(choice.model))
 
 
 def require_capable(choice: Choice) -> None:
+    passed_at = _passed.get(_fingerprint(choice))
+    if passed_at is not None and time.monotonic() - passed_at < PASS_TTL_S:
+        return
     result = check(choice)
     failed = [c for c in result.checks if not c.ok]
     if failed:

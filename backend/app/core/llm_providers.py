@@ -95,6 +95,26 @@ def redact(text: str, key: str) -> str:
     return _KEY_LIKE.sub("[key]", text)[:300]
 
 
+def _said(exc: Exception) -> str:
+    """The provider's own error message, not the client library's wrapper around it.
+    Gemini wraps the error in a list, so `[{"error": {"message": ...}}]` is unwrapped too."""
+    body = getattr(exc, "body", None)
+    if body is None and isinstance(exc, httpx.HTTPStatusError):
+        try:
+            body = exc.response.json()
+        except ValueError:
+            body = None
+    if isinstance(body, list) and body:
+        body = body[0]
+    if isinstance(body, dict):
+        error = body.get("error", body)
+        if isinstance(error, dict) and error.get("message"):
+            return str(error["message"])
+        if isinstance(error, str) and error:
+            return error
+    return str(exc)
+
+
 def _status(exc: Exception) -> int | None:
     status = getattr(exc, "status_code", None)
     if status is None:
@@ -123,4 +143,4 @@ def classify(exc: Exception, choice: Choice) -> ModelKeyError:
         code, message = "provider_unreachable", f"{name} is having problems right now."
     else:
         code, message = "provider_error", f"{name} returned an error."
-    return ModelKeyError(code, message + SUFFIX, redact(str(exc), choice.api_key))
+    return ModelKeyError(code, message + SUFFIX, redact(_said(exc), choice.api_key))

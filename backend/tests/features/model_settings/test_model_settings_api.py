@@ -52,6 +52,7 @@ def client(monkeypatch):
     monkeypatch.setattr(service, "list_models", lambda choice: checked.append(choice) or {
         "gpt-4.1-mini": 1_047_576, "gpt-4.1": None, "tiny": 4096})
     monkeypatch.setattr(service, "build_client", lambda choice, **kw: FakeChat(choice.model))
+    monkeypatch.setattr(service, "_passed", {})
 
     from app.main import app
 
@@ -126,6 +127,14 @@ def test_test_reports_each_capability(client):
         ("Connection", True), ("Tool calling", True), ("Structured output", True),
         ("Context window", True)]
     assert body["context"] == 1_047_576
+
+
+def test_save_after_a_passing_test_skips_the_model_calls(client):
+    body = {"provider": "openai", "api_key": KEY, "model": "gpt-4.1-mini"}
+    assert client.post(f"{URL}/test", json=body).json()["ok"] is True
+
+    assert client.put(URL, json=body).status_code == 200
+    assert len(client.checked) == 1
 
 
 @pytest.mark.parametrize("model, failing", [("no-tools", "Tool calling"),

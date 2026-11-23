@@ -225,8 +225,12 @@ class _Job:
             db = self.session_factory()
             terminal, memory = self._answer(db, emit, started)
         except ModelKeyError as exc:
-            logger.warning("student model failed in thread %s: %s", self.thread_id, exc.code)
-            terminal = self._failed(db, started, exc.detail, exc.code)
+            logger.warning("student model failed in thread %s: %s: %s", self.thread_id, exc.code,
+                           exc.provider_message)
+            message = exc.detail
+            if exc.provider_message:
+                message += f"\n\nThe provider said: {exc.provider_message}"
+            terminal = self._failed(db, started, message, exc.code)
         except Exception:
             logger.exception("chat turn failed in thread %s", self.thread_id)
             terminal = self._failed(db, started)

@@ -53,6 +53,14 @@ def test_classify_never_echoes_the_key():
     assert KEY not in error.detail
 
 
+def test_classify_keeps_the_providers_own_message():
+    exc = StatusError(400, "[{'error': {...}}]")
+    exc.body = [{"error": {"code": 400, "status": "INVALID_ARGUMENT",
+                           "message": "Function call is missing a thought_signature."}}]
+
+    assert classify(exc, CHOICE).provider_message == "Function call is missing a thought_signature."
+
+
 def test_cookie_is_http_only_and_kept_for_a_year():
     assert COOKIE_KWARGS["max_age"] == 365 * 86400
     assert COOKIE_KWARGS["httponly"] and COOKIE_KWARGS["samesite"] == "strict"
