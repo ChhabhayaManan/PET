@@ -37,6 +37,7 @@ class RecheckOut(BaseModel):
 
 
 class AboutIn(_Closed):
+    full_name: str | None = Field(None, max_length=255)
     year_of_study: int | None = Field(None, ge=1, le=6)
     program: str | None = Field(None, max_length=100)
     institution: str | None = Field(None, max_length=255)

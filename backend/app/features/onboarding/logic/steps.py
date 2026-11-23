@@ -37,6 +37,8 @@ def apply(db: Session, user: User, record: OnboardingRecord, step: str,
     if step == "language":
         user.preferred_language = data.language
     elif step == "about":
+        if data.full_name and data.full_name.strip():
+            user.full_name = data.full_name.strip()
         user.year_of_study, user.institution = data.year_of_study, data.institution
         user.years_of_experience = EXPERIENCE_YEARS[data.experience]
         prefs = _prefs(db, user)
@@ -73,7 +75,7 @@ def answers(db: Session, user: User, record: OnboardingRecord) -> dict:
     if "about" in saved and prefs is not None:
         experience = next((bucket for bucket, years in EXPERIENCE_YEARS.items()
                            if years == user.years_of_experience), None)
-        about = {"year_of_study": user.year_of_study, "program": prefs.program,
+        about = {"full_name": user.full_name, "year_of_study": user.year_of_study, "program": prefs.program,
                  "institution": user.institution, "experience": experience,
                  "goal": prefs.goal}
     if "learning" in saved and prefs is not None:

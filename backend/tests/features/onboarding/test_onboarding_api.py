@@ -32,7 +32,7 @@ from tests.features.onboarding.test_theory_pending import Judge
 API = "/api/v1/onboarding"
 PASS_OUT = "sandbox-pass"
 TESTS = [{"stdin": "stdin-secret", "expected_stdout": PASS_OUT}]
-ABOUT = {"year_of_study": 2, "program": "B.Tech CSE", "institution": "NIT Surat",
+ABOUT = {"full_name": "Asha Patel", "year_of_study": 2, "program": "B.Tech CSE", "institution": "NIT Surat",
          "experience": "6to12m", "goal": "placements"}
 LEARNING = {"explanation_style": "short", "example_order": "concept_first",
             "chat_language": "hinglish", "hours_per_week": "5to10", "self_rating": 3}
@@ -190,7 +190,7 @@ def test_steps_save_and_resume(client, db, user):
     db.expire_all()
     assert user.preferred_language == "python"
     assert user.years_of_experience == 0.75
-    assert (user.year_of_study, user.institution) == (2, "NIT Surat")
+    assert (user.full_name, user.year_of_study, user.institution) == ("Asha Patel", 2, "NIT Surat")
     prefs = db.get(LearnerPreferences, user.id)
     assert (prefs.goal, prefs.program, prefs.chat_language) == ("placements", "B.Tech CSE",
                                                                  "hinglish")

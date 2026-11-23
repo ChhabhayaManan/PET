@@ -3,7 +3,7 @@ import { StepTitle, StepNav, useSaveStep } from '../../../components/onboarding/
 
 const COLLECTED = [
   { icon: Code2,      tone: 'bg-pop-aqua text-canvas', text: 'The programming language you want to practise in' },
-  { icon: User,       tone: 'bg-pop-mint text-canvas', text: 'Your background: year, program, institution, coding experience and goal' },
+  { icon: User,       tone: 'bg-pop-mint text-canvas', text: 'Your name and background: year, program, institution, coding experience and goal' },
   { icon: BookOpen,   tone: 'bg-pop-sun text-canvas',  text: 'How you like to learn: explanation style, examples, chat language and study time' },
   { icon: ListChecks, tone: 'bg-pop-pink text-canvas', text: 'Your answers to a short check of up to 12 questions' },
 ]
