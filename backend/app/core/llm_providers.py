@@ -42,6 +42,8 @@ _KEY_LIKE = re.compile(r"(sk-|sk_|nvapi-|gsk_|AIza|xai-)[A-Za-z0-9_\-]{6,}")
 _TOKEN_MARKERS = ("context length", "context_length", "maximum context", "too many tokens",
                   "token limit", "reduce the length", "max_tokens", "too long")
 _CREDIT_MARKERS = ("quota", "credit", "billing", "insufficient", "balance", "payment")
+# Groq's per-minute limit message links to its billing page, so this is checked first.
+_RATE_MARKERS = ("rate limit", "per minute", "try again in")
 
 
 def label(provider_id: str) -> str:
@@ -49,11 +51,29 @@ def label(provider_id: str) -> str:
     return provider.label if provider else provider_id
 
 
+GEMINI_SKIP_SIGNATURE = "skip_thought_signature_validator"
+
+
+class GeminiChat(llm.ChatOpenAI):
+    """Gemini 3 rejects a tool call sent back without its thought signature, and
+    langchain-openai drops the signature from the reply. Google accepts this documented
+    placeholder in its place."""
+
+    def _get_request_payload(self, input_, *, stop=None, **kwargs) -> dict:
+        payload = super()._get_request_payload(input_, stop=stop, **kwargs)
+        for message in payload.get("messages", []):
+            for call in message.get("tool_calls") or []:
+                call.setdefault("extra_content",
+                                {"google": {"thought_signature": GEMINI_SKIP_SIGNATURE}})
+        return payload
+
+
 def build_client(choice: Choice, *, temperature: float, max_tokens: int, timeout: float):
     extra = ({"extra_body": {"chat_template_kwargs": {"thinking": False}}}
              if choice.provider == "nvidia" else {})
+    client = GeminiChat if choice.provider == "gemini" else llm.ChatOpenAI
     try:
-        return llm.ChatOpenAI(
+        return client(
             model=choice.model, api_key=choice.api_key or "none", base_url=choice.base_url,
             temperature=temperature, max_completion_tokens=max_tokens,
             max_retries=0, timeout=timeout, **extra)
@@ -130,7 +150,8 @@ def classify(exc: Exception, choice: Choice) -> ModelKeyError:
         code, message = "provider_unreachable", f"Couldn't reach {name}."
     elif status in (401, 403):
         code, message = "invalid_key", f"Your {name} key was rejected."
-    elif status == 402 or (status == 429 and any(m in text for m in _CREDIT_MARKERS)):
+    elif status == 402 or (status == 429 and not any(m in text for m in _RATE_MARKERS)
+                           and any(m in text for m in _CREDIT_MARKERS)):
         code, message = "out_of_credit", f"Your {name} account is out of credit."
     elif status == 429:
         code, message = "rate_limited", f"Your {name} key hit its rate limit. Wait a minute or switch model."
