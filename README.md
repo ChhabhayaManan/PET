@@ -4,9 +4,9 @@
 
 # PET
 
-**Programming Education Tool**
+**A Multi-Agent Platform for Personalised and Trustworthy Programming Education**
 
-Learn to code by thinking, not copying.
+PET (Programming Education Tool). Learn to code by thinking, not copying.
 
 ![C](https://img.shields.io/badge/C-first--class-A8B9CC?logo=c&logoColor=white)
 ![C++](https://img.shields.io/badge/C%2B%2B-supported-00599C?logo=cplusplus&logoColor=white)
@@ -69,6 +69,10 @@ PET is part of **aiTA**, a larger project on AI teaching assistants for programm
   when an AI thinks it looks right.
 - **Practice follows the student.** Each student gets the next item from their own weakest
   topic, in their own language.
+- **Rules decide, the AI explains.** The AI model never grades code, never picks the next
+  question and never sets a topic level. Those come from rules over measured results. The
+  AI writes explanations, hints, reports and chat replies, and each one is checked before
+  the student sees it.
 
 ---
 
@@ -192,8 +196,8 @@ moderation check keeps the conversation on learning.
 <details>
 <summary><b>Onboarding</b></summary>
 
-New students go through a short setup: a few questions about themselves and their
-language, then an adaptive check of up to 12 items (predict the output, fill the blank, find
+New students go through a short setup: their name, a few questions about themselves and
+their language, then an adaptive check of up to 12 items (predict the output, fill the blank, find
 the bug, write a short program, and a few theory questions). The results set the starting
 level on all 12 topics, and practice begins from the weakest open topic.
 
